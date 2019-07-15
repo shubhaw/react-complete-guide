@@ -29,10 +29,22 @@ class App extends Component {
   }
 
   render() {
+
+    const buttonStyle = {
+      backgroundColor: 'white',
+      font: 'inherit',
+      border: '1px solid blue',
+      padding: '8px',
+      curson: 'pointer'
+    };
+
     return (
       <div className="App">
         <h1>Hi React!</h1>
-        <button onClick={() => this.switchPersonHandler('Dhinchak!', 'Shubhaw!')}>Switch Persons</button>
+        <button style={buttonStyle}
+          onClick={() => this.switchPersonHandler('Dhinchak!', 'Shubhaw!')}>
+            Switch Persons
+        </button>
         <Person name={this.state.persons[0].name} age={this.state.persons[0].age} />
         <Person
           name={this.state.persons[1].name}
@@ -40,7 +52,8 @@ class App extends Component {
           click={this.switchPersonHandler.bind(this, 'Dhinchak', 'Shubhaw')}
           change={this.nameChangeHandler}
           >
-            I am not cute!</Person>
+            I am not cute!
+        </Person>
       </div>
     );
   }
