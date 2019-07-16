@@ -47,18 +47,11 @@ class App extends Component {
       curson: 'pointer'
     };
 
-    return (
-      <div className="App">
-        <h1>Hi React!</h1>
-        <button style={buttonStyle}
-          onClick={() => this.switchPersonHandler('Dhinchak!', 'Shubhaw!')}>
-            Switch Persons
-        </button>
-        <br />
-        <button className='ToggleButton' onClick={this.togglePersonsHandler}>Toggle Persons</button>
-        {
-          this.state.showPersons ? 
-          <div>
+    let persons = null;
+
+    if(this.state.showPersons) {
+      persons = (
+        <div>
             <Person name={this.state.persons[0].name} age={this.state.persons[0].age} />
             <Person
               name={this.state.persons[1].name}
@@ -69,8 +62,19 @@ class App extends Component {
                 I am not cute!
             </Person>
           </div>
-          : null
-        }
+      );
+    }
+
+    return (
+      <div className="App">
+        <h1>Hi React!</h1>
+        <button style={buttonStyle}
+          onClick={() => this.switchPersonHandler('Dhinchak!', 'Shubhaw!')}>
+            Switch Persons
+        </button>
+        <br />
+        <button className='ToggleButton' onClick={this.togglePersonsHandler}>Toggle Persons</button>
+        {persons}
       </div>
     );
   }
