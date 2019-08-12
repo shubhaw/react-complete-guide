@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import './App.css';
 import Person from './Person/Person';
+import { join } from 'path';
 
 class App extends Component {
   state = {
     persons: [
-      { id: 'abc', name: 'Shubhaw', age: '27' },
-      { id: 'pqr', name: 'Dhinchak', age: '26' }
+      { id: 'abc', name: 'Shubhaw', age: '26' },
+      { id: 'pqr', name: 'Shreya', age: '20' },
+      { id: 'xyz', name: 'Srijan', age: 10 }
     ],
     showPersons: false
   };
@@ -15,7 +17,8 @@ class App extends Component {
     this.setState({
       persons: [
         { name: newName1, age: 26 },
-        { name: newName2, age: 27 }
+        { name: newName2, age: 27 },
+        { name: 'Srijan', age: 9 }
       ]
     });
   }
@@ -73,7 +76,8 @@ class App extends Component {
       border: '2px solid grey',
       borderRadius: '10px',
       padding: '8px',
-      curson: 'pointer'
+      curson: 'pointer',
+      margin: '15px auto'
     }
 
     let persons = null;
@@ -98,19 +102,28 @@ class App extends Component {
       );
 
       toggleButtonStyle.backgroundColor = 'red';
-      
+    }
+
+    const classes = [];
+
+    if(this.state.persons.length <= 2) {
+      classes.push('red');
+    }
+
+    if(this.state.persons.length <= 1) {
+      classes.push('bold');
     }
 
     return (
       <div className="App">
         <h1>Hi React!</h1>
+        <p className={classes.join(' ')}>This really works!</p>
         <button style={buttonStyle}
           onClick={() => this.switchPersonHandler('Dhinchak!', 'Shubhaw!')}>
             Switch Persons
         </button>
         <br />
-        <button 
-          className='ToggleButton'
+        <button
           onClick={this.togglePersonsHandler}
           style={toggleButtonStyle}>
             Toggle Persons
