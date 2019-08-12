@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import './App.css';
 import Person from './Person/Person';
 import { join } from 'path';
+import Radium from 'radium';
+
 
 class App extends Component {
   state = {
@@ -66,7 +68,7 @@ class App extends Component {
       font: 'inherit',
       border: '1px solid blue',
       padding: '8px',
-      curson: 'pointer'
+      cursor: 'pointer'
     };
 
     const toggleButtonStyle = {
@@ -76,8 +78,12 @@ class App extends Component {
       border: '2px solid grey',
       borderRadius: '10px',
       padding: '8px',
-      curson: 'pointer',
-      margin: '15px auto'
+      cursor: 'pointer',
+      margin: '15px auto',
+      ':hover': {
+        backgroundColor: 'lightgreen',
+        color: 'grey'
+      }
     }
 
     let persons = null;
@@ -102,6 +108,10 @@ class App extends Component {
       );
 
       toggleButtonStyle.backgroundColor = 'red';
+      toggleButtonStyle[':hover'] = {
+        backgroundColor: 'salmon',
+        color: 'grey'
+      }
     }
 
     const classes = [];
@@ -134,4 +144,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default Radium(App);
