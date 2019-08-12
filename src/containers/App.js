@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import styleClasses from './App.module.css';
-import Person from '../components/Persons/Person/Person';
+import Persons from '../components/Persons/Persons';
+import Cockpit from '../components/Cockpit/Cockpit';
 import Radium, {StyleRoot} from 'radium';
 
 
@@ -61,74 +62,28 @@ class App extends Component {
 
 
   render() {
-    const toggleButtonStyle = {
-      backgroundColor: 'green',
-      color: 'white',
-      font: 'inherit',
-      border: '2px solid grey',
-      borderRadius: '10px',
-      padding: '8px',
-      cursor: 'pointer',
-      margin: '15px auto',
-      ':hover': {
-        backgroundColor: 'lightgreen',
-        color: 'grey'
-      }
-    }
-
+    
     let persons = null;
 
     if(this.state.showPersons) {
-      persons = (
-        <div>
-          {
-            this.state.persons.map( (person, index) => {
-              return (
-                <Person 
-                  click={() => this.deletePersonHandler(index)}
-                  name={person.name}
-                  age={person.age}
-                  key={person.id}
-                  change={(event) => this.nameChangeHandler(event, person.id)}
-                />
-              )
-            })
-          }
-        </div>
-      );
-
-      toggleButtonStyle.backgroundColor = 'red';
-      toggleButtonStyle[':hover'] = {
-        backgroundColor: 'salmon',
-        color: 'grey'
-      }
+      persons = 
+        <Persons
+          persons={this.state.persons}
+          clicked={this.deletePersonHandler}
+          changed={this.nameChangeHandler} />;
     }
 
-    const classes = [];
 
-    if(this.state.persons.length <= 2) {
-      classes.push(styleClasses.red);
-    }
-
-    if(this.state.persons.length <= 1) {
-      classes.push(styleClasses.bold);
-    }
 
     return (
       <StyleRoot>
         <div className={styleClasses.App}>
-          <h1>Hi React!</h1>
-          <p className={classes.join(' ')}>This really works!</p>
-          <button className={styleClasses.switchPersonsButton}
-            onClick={() => this.switchPersonHandler('Dhinchak!', 'Shubhaw!')}>
-              Switch Persons
-          </button>
-          <br />
-          <button
-            onClick={this.togglePersonsHandler}
-            style={toggleButtonStyle}>
-              Toggle Persons
-          </button>
+          <Cockpit
+            persons={this.state.persons}
+            switchPersonClicked={this.switchPersonHandler}
+            togglePersonsClicked={this.togglePersonsHandler}
+            showPersons={this.state.showPersons} />
+          
           {persons}
         </div>
       </StyleRoot>
