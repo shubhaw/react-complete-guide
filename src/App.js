@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './App.css';
+import styleClasses from './App.module.css';
 import Person from './Person/Person';
 import Radium, {StyleRoot} from 'radium';
 
@@ -61,15 +61,6 @@ class App extends Component {
 
 
   render() {
-
-    const buttonStyle = {
-      backgroundColor: 'white',
-      font: 'inherit',
-      border: '1px solid blue',
-      padding: '8px',
-      cursor: 'pointer'
-    };
-
     const toggleButtonStyle = {
       backgroundColor: 'green',
       color: 'white',
@@ -116,19 +107,19 @@ class App extends Component {
     const classes = [];
 
     if(this.state.persons.length <= 2) {
-      classes.push('red');
+      classes.push(styleClasses.red);
     }
 
     if(this.state.persons.length <= 1) {
-      classes.push('bold');
+      classes.push(styleClasses.bold);
     }
 
     return (
       <StyleRoot>
-        <div className="App">
+        <div className={styleClasses.App}>
           <h1>Hi React!</h1>
           <p className={classes.join(' ')}>This really works!</p>
-          <button style={buttonStyle}
+          <button className={styleClasses.switchPersonsButton}
             onClick={() => this.switchPersonHandler('Dhinchak!', 'Shubhaw!')}>
               Switch Persons
           </button>
