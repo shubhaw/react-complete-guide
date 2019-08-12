@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import Person from './Person/Person';
 import { join } from 'path';
-import Radium from 'radium';
+import Radium, {StyleRoot} from 'radium';
 
 
 class App extends Component {
@@ -125,21 +125,23 @@ class App extends Component {
     }
 
     return (
-      <div className="App">
-        <h1>Hi React!</h1>
-        <p className={classes.join(' ')}>This really works!</p>
-        <button style={buttonStyle}
-          onClick={() => this.switchPersonHandler('Dhinchak!', 'Shubhaw!')}>
-            Switch Persons
-        </button>
-        <br />
-        <button
-          onClick={this.togglePersonsHandler}
-          style={toggleButtonStyle}>
-            Toggle Persons
-        </button>
-        {persons}
-      </div>
+      <StyleRoot>
+        <div className="App">
+          <h1>Hi React!</h1>
+          <p className={classes.join(' ')}>This really works!</p>
+          <button style={buttonStyle}
+            onClick={() => this.switchPersonHandler('Dhinchak!', 'Shubhaw!')}>
+              Switch Persons
+          </button>
+          <br />
+          <button
+            onClick={this.togglePersonsHandler}
+            style={toggleButtonStyle}>
+              Toggle Persons
+          </button>
+          {persons}
+        </div>
+      </StyleRoot>
     );
   }
 }
