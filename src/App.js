@@ -66,6 +66,16 @@ class App extends Component {
       curson: 'pointer'
     };
 
+    const toggleButtonStyle = {
+      backgroundColor: 'green',
+      color: 'white',
+      font: 'inherit',
+      border: '2px solid grey',
+      borderRadius: '10px',
+      padding: '8px',
+      curson: 'pointer'
+    }
+
     let persons = null;
 
     if(this.state.showPersons) {
@@ -86,6 +96,9 @@ class App extends Component {
           }
         </div>
       );
+
+      toggleButtonStyle.backgroundColor = 'red';
+      
     }
 
     return (
@@ -96,7 +109,12 @@ class App extends Component {
             Switch Persons
         </button>
         <br />
-        <button className='ToggleButton' onClick={this.togglePersonsHandler}>Toggle Persons</button>
+        <button 
+          className='ToggleButton'
+          onClick={this.togglePersonsHandler}
+          style={toggleButtonStyle}>
+            Toggle Persons
+        </button>
         {persons}
       </div>
     );
