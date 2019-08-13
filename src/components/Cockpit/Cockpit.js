@@ -1,8 +1,16 @@
-import React from 'react';
-import Radium from 'radium';
+import React, { useEffect } from 'react';
+// import Radium from 'radium';
 import styleClasses from './Cockpit.module.css';
 
-const cockpit = (props) => {
+const Cockpit = (props) => {
+
+    useEffect(() => {
+        console.log('[Cockpit.js] useEffect');
+        setTimeout(() => {
+            alert('Saved!');
+        }, 1000);
+    }, [props.persons]);
+
     const classes = [];
 
     if(props.persons.length <= 2) {
@@ -55,4 +63,5 @@ const cockpit = (props) => {
     );
 }
 
-export default Radium(cockpit);
+// export default Radium(Cockpit);
+export default Cockpit;
