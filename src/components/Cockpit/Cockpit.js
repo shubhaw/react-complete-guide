@@ -39,7 +39,7 @@ const cockpit = (props) => {
 
     return (
         <div>
-            <h1>Hi React!</h1>
+            <h1>{props.title}</h1>
             <p className={classes.join(' ')}>This really works!</p>
             <button className={styleClasses.switchPersonsButton}
                 onClick={() => props.switchPersonClicked('Dhinchak!', 'Shubhaw!')}>

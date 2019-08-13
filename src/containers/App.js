@@ -6,6 +6,12 @@ import Radium, {StyleRoot} from 'radium';
 
 
 class App extends Component {
+
+  constructor(props) {
+    super(props);
+    console.log('[App.js] constructor');
+  }
+
   state = {
     persons: [
       { id: 'abc', name: 'Shubhaw', age: '26' },
@@ -14,6 +20,26 @@ class App extends Component {
     ],
     showPersons: false
   };
+
+
+  static getDerivedStateFromProps(props, state) {
+    console.log('[App.js] getDerivedStateFromProps', props);
+    return state;
+  }
+
+  componentDidMount() {
+    console.log('[App.js] componentDidMount');
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    console.log('[App.js] shouldComponentUpdate');
+    return true;
+  }
+
+  componentDidUpdate() {
+    console.log('[App.js] componentDidUpdate');
+  }
+
 
   switchPersonHandler = (newName1, newName2) => {
     this.setState({
@@ -62,7 +88,7 @@ class App extends Component {
 
 
   render() {
-    
+    console.log('[App.js] render');
     let persons = null;
 
     if(this.state.showPersons) {
@@ -79,6 +105,7 @@ class App extends Component {
       <StyleRoot>
         <div className={styleClasses.App}>
           <Cockpit
+            title={this.props.appTitle}
             persons={this.state.persons}
             switchPersonClicked={this.switchPersonHandler}
             togglePersonsClicked={this.togglePersonsHandler}
