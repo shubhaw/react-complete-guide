@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import Radium from 'radium';
 import styleClasses from './Person.module.css';
 import Aux from '../../../hoc/Auxiliary.js';
+import withClass from "../../../hoc/WithClass";
 
 class Person extends Component {
     render() {
@@ -9,14 +9,14 @@ class Person extends Component {
         return (
             <Aux>
                 {/* <div className={styleClasses.Person}> */}
-                    <p onClick={this.props.click}>I'm {this.props.name} and am {this.props.age} years old!</p>
-                    <p>{this.props.children}</p>
-                    <input type="text" onChange={this.props.change} value={this.props.name} />
+                <p onClick={this.props.click}>I'm {this.props.name} and am {this.props.age} years old!</p>
+                <p>{this.props.children}</p>
+                <input type="text" onChange={this.props.change} value={this.props.name} />
                 {/* </div> */}
             </Aux>
         );
     }
-    
+
 };
 
-export default Radium(Person);
+export default withClass(Person, styleClasses.Person);

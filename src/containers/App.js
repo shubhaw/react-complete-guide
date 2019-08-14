@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import styleClasses from './App.module.css';
 import Persons from '../components/Persons/Persons';
 import Cockpit from '../components/Cockpit/Cockpit';
-import Radium from 'radium';
+
+import withClass from '../hoc/WithClass';
+import Aux from '../hoc/Auxiliary';
 
 
 class App extends Component {
@@ -57,7 +59,7 @@ class App extends Component {
     const persons = [...this.state.persons]; //immutable and currently being extensively used.
 
     persons.splice(personIndex, 1);
-    this.setState({persons: persons});
+    this.setState({ persons: persons });
   };
 
   nameChangeHandler = (event, id) => {
@@ -91,8 +93,8 @@ class App extends Component {
     console.log('[App.js] render');
     let persons = null;
 
-    if(this.state.showPersons) {
-      persons = 
+    if (this.state.showPersons) {
+      persons =
         <Persons
           persons={this.state.persons}
           clicked={this.deletePersonHandler}
@@ -102,18 +104,17 @@ class App extends Component {
 
 
     return (
-        <div className={styleClasses.App}>
-          <Cockpit
-            title={this.props.appTitle}
-            persons={this.state.persons}
-            switchPersonClicked={this.switchPersonHandler}
-            togglePersonsClicked={this.togglePersonsHandler}
-            showPersons={this.state.showPersons} />
-          
-          {persons}
-        </div>
+      <Aux>
+        <Cockpit
+          title={this.props.appTitle}
+          persons={this.state.persons}
+          switchPersonClicked={this.switchPersonHandler}
+          togglePersonsClicked={this.togglePersonsHandler}
+          showPersons={this.state.showPersons} />
+        {persons}
+      </Aux>
     );
   }
 }
 
-export default Radium(App);
+export default withClass(App, styleClasses.App);
