@@ -1,15 +1,19 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 // import Radium from 'radium';
 import styleClasses from './Cockpit.module.css';
 
 const Cockpit = (props) => {
+    const toggleButtonRef = useRef(null);
 
     useEffect(() => {
         console.log('[Cockpit.js] useEffect');
         setTimeout(() => {
-            console.log('[Cockpit.js] useEffect after 1 sec');
+            console.log('[Cockpit.js] useEffect: calling click on "Toggle Persons" button after 1 sec')
+            toggleButtonRef.current.click();    
         }, 1000);
+        
     }, [props.persons]);
+
 
     const classes = [];
 
@@ -55,6 +59,7 @@ const Cockpit = (props) => {
             </button>
             <br />
             <button
+                ref={toggleButtonRef}
                 onClick={props.togglePersonsClicked}
                 style={toggleButtonStyle}>
                 Toggle Persons
