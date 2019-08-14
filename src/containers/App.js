@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import styleClasses from './App.module.css';
 import Persons from '../components/Persons/Persons';
 import Cockpit from '../components/Cockpit/Cockpit';
-import Radium, {StyleRoot} from 'radium';
+import Radium from 'radium';
 
 
 class App extends Component {
@@ -102,7 +102,6 @@ class App extends Component {
 
 
     return (
-      <StyleRoot>
         <div className={styleClasses.App}>
           <Cockpit
             title={this.props.appTitle}
@@ -113,7 +112,6 @@ class App extends Component {
           
           {persons}
         </div>
-      </StyleRoot>
     );
   }
 }

@@ -7,7 +7,7 @@ const Cockpit = (props) => {
     useEffect(() => {
         console.log('[Cockpit.js] useEffect');
         setTimeout(() => {
-            alert('Saved!');
+            console.log('[Cockpit.js] useEffect after 1 sec');
         }, 1000);
     }, [props.persons]);
 
