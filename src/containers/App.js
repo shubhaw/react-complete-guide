@@ -5,7 +5,7 @@ import Cockpit from '../components/Cockpit/Cockpit';
 
 import withClass from '../hoc/WithClass';
 import Aux from '../hoc/Auxiliary';
-
+import AuthContext from '../context/auth-context';
 
 class App extends Component {
 
@@ -21,7 +21,8 @@ class App extends Component {
       { id: 'xyz', name: 'Srijan', age: 10 }
     ],
     showPersons: false,
-    changeCounter: 0
+    changeCounter: 0,
+    authenticated: false
   };
 
 
@@ -43,6 +44,11 @@ class App extends Component {
     console.log('[App.js] componentDidUpdate');
   }
 
+  loginHandler = () => {
+    this.setState({
+      authenticated: true
+    });
+  }
 
   switchPersonHandler = (newName1, newName2) => {
     this.setState({
@@ -109,13 +115,19 @@ class App extends Component {
 
     return (
       <Aux>
-        <Cockpit
-          title={this.props.appTitle}
-          persons={this.state.persons}
-          switchPersonClicked={this.switchPersonHandler}
-          togglePersonsClicked={this.togglePersonsHandler}
-          showPersons={this.state.showPersons} />
-        {persons}
+        <AuthContext.Provider
+          value={{
+            authenticated: this.state.authenticated,
+            login: this.loginHandler
+          }}>
+          <Cockpit
+            title={this.props.appTitle}
+            persons={this.state.persons}
+            switchPersonClicked={this.switchPersonHandler}
+            togglePersonsClicked={this.togglePersonsHandler}
+            showPersons={this.state.showPersons} />
+          {persons}
+        </AuthContext.Provider>
       </Aux>
     );
   }
